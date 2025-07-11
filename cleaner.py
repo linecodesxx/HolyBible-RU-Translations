@@ -2,7 +2,7 @@ import json
 import re
 
 # Загрузка файла
-with open("bible_nrt_named.json", "r", encoding="utf-8") as f:
+with open("bible_nrt_cleaned.json", "r", encoding="utf-8") as f:
     bible_data = json.load(f)
 
 def is_valid_verse(verse):
