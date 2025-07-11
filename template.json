@@ -1,0 +1,19 @@
+{
+    "Translation": "NRT",
+    "Books": [
+        {
+        "BookId": 1,
+        "BookName": "Книга",
+        "Chapters": [
+            {
+                "ChapterId":1,
+                "Verses":[
+                    {
+                        "VerseId":1,
+                        "Text": "lalala"
+                    }
+                ]
+            }
+        ]}
+    ]
+}
