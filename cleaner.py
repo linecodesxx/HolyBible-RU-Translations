@@ -23,10 +23,15 @@ def is_valid_verse(verse):
 
     return True
 
+def clean_text(text):
+    """ Удаляет сноски вида [123] и лишние пробелы. """
+    text = re.sub(r"\[\d+]", "", text)     # Удаление сносок
+    text = re.sub(r"\s+", " ", text)       # Удаление лишних пробелов
+    return text.strip()
+
 # Чистка
 for book in bible_data["Books"]:
     for chapter in book["Chapters"]:
-        # Группируем стихи по VerseId и оставляем только первый
         seen_ids = set()
         clean_verses = []
 
@@ -36,6 +41,10 @@ for book in bible_data["Books"]:
                 continue
             if not is_valid_verse(verse):
                 continue
+
+            # Очищаем текст стиха
+            verse["Text"] = clean_text(verse["Text"])
+
             seen_ids.add(vid)
             clean_verses.append(verse)
 
@@ -46,4 +55,4 @@ for book in bible_data["Books"]:
 with open("bible_nrt_cleaned.json", "w", encoding="utf-8") as f:
     json.dump(bible_data, f, ensure_ascii=False, indent=2)
 
-print("✅ JSON очищен и сохранён в bible_nrt_cleaned.json")
+print("✅ JSON очищен от сносок и сохранён в bible_nrt_cleaned.json")
