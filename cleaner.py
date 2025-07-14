@@ -1,8 +1,10 @@
 import json
 import re
 
+filename = ""
+
 # Загрузка файла
-with open("bible_nrt_cleaned.json", "r", encoding="utf-8") as f:
+with open(f"{filename}.json", "r", encoding="utf-8") as f:
     bible_data = json.load(f)
 
 def is_valid_verse(verse):
@@ -52,7 +54,7 @@ for book in bible_data["Books"]:
         chapter["Verses"] = sorted(clean_verses, key=lambda v: v["VerseId"])
 
 # Сохраняем очищенный JSON
-with open("bible_nrt_cleaned.json", "w", encoding="utf-8") as f:
+with open(f"{filename}.json", "w", encoding="utf-8") as f:
     json.dump(bible_data, f, ensure_ascii=False, indent=2)
 
-print("✅ JSON очищен от сносок и сохранён в bible_nrt_cleaned.json")
+print(f"✅ JSON очищен от сносок и сохранён в {filename}.json")
